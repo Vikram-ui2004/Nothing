@@ -1,7 +1,3 @@
-
-
-
-
   const express = require("express");
   const mongoose = require("mongoose");
   const cors = require("cors");
@@ -103,6 +99,10 @@ app.post("/api/vent/:id/suggestion", async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: "Failed to add suggestion" });
     }
+  });
+  
+  app.get("/", (req, res) => {
+    res.send("Server running");
   });
   // Start Server
   const PORT = process.env.PORT || 5000;
