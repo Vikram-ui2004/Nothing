@@ -4,7 +4,8 @@
   require("dotenv").config();
   
   const app = express();
-  app.use(cors());
+  app.use(cors({ origin:"https://nothing-site-ten.vercel.app/"}));
+
   app.use(express.json()); // Middleware to parse JSON
   
 
