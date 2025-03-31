@@ -4,7 +4,23 @@
   require("dotenv").config();
   
   const app = express();
-  app.use(cors({ origin:"https://nothing-site-ten.vercel.app/"}));
+  const allowedOrigins = [
+    "https://nothing-site-ten.vercel.app", // Production Frontend
+    "http://localhost:5173", // Development Frontend
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS policy does not allow this origin!"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  }));
+  
 
   app.use(express.json()); // Middleware to parse JSON
   
